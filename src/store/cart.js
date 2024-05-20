@@ -6,10 +6,10 @@ const counterSlice = createSlice({
     cart: []
   },
   reducers: {
-    ADD_TO_CART: (state,payload) => {
+    ADD_TO_CART: (state,{payload}) => {
       state.cart.push(payload)
     },
-    REMOVE_FROM_CART: (state,payload) => {
+    REMOVE_FROM_CART: (state,{payload}) => {
       state.cart = state.cart.filter((ct)=>ct.id !== payload.id)
     }
   }

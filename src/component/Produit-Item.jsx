@@ -5,6 +5,7 @@ import { ADD_TO_CART ,REMOVE_FROM_CART} from "../store/cart";
 
 export default function ProductItem({productItem}){
    const cart = useSelector(state => state.cart)
+   console.log(cart)
     const dispatch = useDispatch()
     function handleAddToCart(){
         dispatch(ADD_TO_CART(productItem))
@@ -19,11 +20,16 @@ export default function ProductItem({productItem}){
      <h1 className="text-lg font-semibold truncate my-5">{productItem.title}</h1>
      <p className="line-clamp-3">{productItem.description}</p>
      <button className="bg-black rounded-md text-white font-medium text-base px-3 py-2 mt-5" onClick={
-     cart.some((c)=>{c.id == productItem.id }) ?
-    "Remove From Cart"
+     cart.some((c)=>c.id === productItem.id ) ?
+    handleRemoveFromCart
      :
-"Add To Cart"
-     }>Add To Cart</button>
+  handleAddToCart
+     }>{
+      cart.some((c)=>c.id === productItem.id ) ?
+     "Remove From Cart"
+      :
+     "Add To Cart"
+      }</button>
        </div>
     </div>
     );
